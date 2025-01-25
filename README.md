@@ -42,7 +42,7 @@ The Carpenter App is a comprehensive solution designed to streamline the managem
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/shreramkedlaya/carpenter-app.git
+   git clone https://github.com/shreeramkedlaya/carpenter_app.git
    cd carpenter-app
    ```
 
