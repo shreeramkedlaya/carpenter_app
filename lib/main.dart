@@ -1,5 +1,5 @@
 import 'package:carpenter_app/components/const.dart';
-import 'package:carpenter_app/screens/home_page.dart';
+import 'package:carpenter_app/home-page/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,8 +17,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: kBlue800,
         appBarTheme: AppBarTheme(
-          iconTheme:
-              IconThemeData(color: white), // Custom color for the drawer icon
+          iconTheme: IconThemeData(
+            color: white,
+          ),
         ),
       ),
       home: HomePage(),

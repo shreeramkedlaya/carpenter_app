@@ -1,4 +1,4 @@
-import 'package:carpenter_app/models/status_model.dart';
+import 'package:carpenter_app/add-new-order/status_model.dart';
 import 'package:flutter/material.dart';
 
 class StatusDropdown extends StatefulWidget {

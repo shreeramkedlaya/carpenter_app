@@ -1,7 +1,7 @@
-import 'package:carpenter_app/components/graph/bar_data.dart';
+import 'package:carpenter_app/home-page/graph/bar_data.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import '../const.dart';
+import '../../components/const.dart';
 
 class MyBarGraph extends StatelessWidget {
   final List weeklySummary;

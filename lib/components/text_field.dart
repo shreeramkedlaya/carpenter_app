@@ -19,31 +19,28 @@ class MyTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0),
-      child: TextField(
-        keyboardType: keyboardType,
-        controller: controller, // Use the controller in the TextField
-        readOnly: readOnly,
-        decoration: InputDecoration(
-          labelText: hintText, // Floating label
-          floatingLabelBehavior:
-              FloatingLabelBehavior.auto, // Label floats when focused
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: kBlue800),
-          ),
-          fillColor: white,
-          filled: true,
-          suffixIcon: icon != null
-              ? Icon(
-                  icon,
-                  color: black,
-                )
-              : null, // Optional icon
+    return TextField(
+      keyboardType: keyboardType,
+      controller: controller,
+      readOnly: readOnly,
+      decoration: InputDecoration(
+        labelText: hintText, // Floating label
+        floatingLabelBehavior:
+            FloatingLabelBehavior.auto, // Label floats when focused
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: Colors.grey),
         ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: kBlue800),
+        ),
+        fillColor: white,
+        filled: true,
+        suffixIcon: icon != null
+            ? Icon(
+                icon,
+                color: black,
+              )
+            : null, // Optional icon
       ),
     );
   }

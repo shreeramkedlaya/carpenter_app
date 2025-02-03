@@ -1,4 +1,4 @@
-import 'package:carpenter_app/components/graph/individual_bar.dart';
+import 'package:carpenter_app/home-page/graph/individual_bar.dart';
 
 class BarData {
   final double sunAmount;

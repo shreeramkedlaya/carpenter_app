@@ -1,7 +1,7 @@
 import 'package:carpenter_app/models/item_model.dart';
 import 'package:flutter/material.dart';
 
-import '../const.dart';
+import '../components/const.dart';
 
 class OrderDetailsPage extends StatefulWidget {
   final List<Item> items;

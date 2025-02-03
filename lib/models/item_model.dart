@@ -2,7 +2,7 @@ class Item {
   final String id;
   final String name;
   int quantity;
-  bool isChecked; // Track whether the checkbox is checked
+  bool isChecked;
 
   Item({
     required this.id,
@@ -11,9 +11,10 @@ class Item {
     this.isChecked = false,
   });
 }
+
 // sample items
-  final List<Item> sampleItems = [
-    Item(id: '1', name: 'Table', quantity: 0),
-    Item(id: '2', name: 'Chair', quantity: 0),
-    Item(id: '3', name: 'Cupboard', quantity: 0),
-  ];
+final List<Item> sampleItems = [
+  Item(id: '1', name: 'Table', quantity: 0),
+  Item(id: '2', name: 'Chair', quantity: 0),
+  Item(id: '3', name: 'Cupboard', quantity: 0),
+];
