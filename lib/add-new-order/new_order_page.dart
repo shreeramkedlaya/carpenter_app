@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, deprecated_member_use, library_prefixes, use_build_context_synchronously
+// ignore_for_file: deprecated_member_use
 
 import 'dart:io';
 import 'package:carpenter_app/components/const.dart';
@@ -9,9 +9,10 @@ import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 import 'package:url_launcher/url_launcher.dart';
 
+import '../models/order_model.dart';
 import 'date_picker.dart';
 import '../order-list/order_list.dart';
 import 'order_details_dropdown.dart';
@@ -32,7 +33,6 @@ class NewOrderPage extends StatefulWidget {
 }
 
 class NewOrderPageState extends State<NewOrderPage> {
-  // image source dialog
   Future<void> _showImageSourceDialog(String type) async {
     showDialog(
       context: context,
@@ -60,7 +60,6 @@ class NewOrderPageState extends State<NewOrderPage> {
     );
   }
 
-  // image picker dialog
   Future<void> _pickImage(String type, {bool fromCamera = true}) async {
     final ImageSource source =
         fromCamera ? ImageSource.camera : ImageSource.gallery;
@@ -100,7 +99,6 @@ class NewOrderPageState extends State<NewOrderPage> {
     }
   }
 
-  // Function to remove image
   void _removeImage(XFile imageFile) {
     setState(() {
       // Remove the imageFile from the list
@@ -110,7 +108,6 @@ class NewOrderPageState extends State<NewOrderPage> {
     });
   }
 
-  // Phone dialer
   void _openPhoneDialer() async {
     String phoneNumber = phoneController.text.trim();
     if (phoneNumber.isEmpty) {
@@ -137,7 +134,7 @@ class NewOrderPageState extends State<NewOrderPage> {
       print('Launching phone dialer with $url');
       try {
         print('launching $url');
-        UrlLauncher.launch(url);
+        url_launcher.launch(url);
       } catch (e) {
         print('Error launching phone dialer: $e');
         ScaffoldMessenger.of(context).showSnackBar(
@@ -150,7 +147,6 @@ class NewOrderPageState extends State<NewOrderPage> {
     }
   }
 
-  // Direct call
   void _openDirectCall() async {
     final dialer = await DirectDialer.instance;
     String phoneNumber = phoneController.text.trim();
@@ -188,7 +184,6 @@ class NewOrderPageState extends State<NewOrderPage> {
     }
   }
 
-  // Launch WhatsApp
   void launchWhatsApp() async {
     String phoneNumber = phoneController.text.trim();
     final String url =
@@ -222,15 +217,6 @@ class NewOrderPageState extends State<NewOrderPage> {
     }
   }
 
-  /* // Bottom navigation bar
-  int _selectedIndex = 0; 
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-*/
   Future<void> _startRecording() async {
     if (isPermissionGranted) {
       final tempDir = await getTemporaryDirectory();
@@ -244,7 +230,7 @@ class NewOrderPageState extends State<NewOrderPage> {
 
       // Start a timer to stop recording after 60 seconds
     } else {
-      _showPermissionError();
+      checkAndRequestPermission();
     }
   }
 
@@ -309,7 +295,6 @@ class NewOrderPageState extends State<NewOrderPage> {
     }
   }
 
-  // Stop audio playback
   Future<void> stopAudio() async {
     await audioPlayer.stopPlayer();
     setState(() => isPlaying = false);
@@ -331,16 +316,38 @@ class NewOrderPageState extends State<NewOrderPage> {
     }
   }
 
-  void confirmOrder() {
-    // Handle the confirm button press
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Order confirmed'),
-        duration: Duration(seconds: 2),
-      ),
-    );
-    Navigator.push(
+  Future<void> confirmOrder(Order? newOrder) async {
+    /* try {
+      // Check if the order has an ID (order exists in DB) or not
+      final dbHelper = DatabaseService();
+
+      if (newOrder != null) {
+        // If order exists, update it
+        await dbHelper.saveOrUpdateOrder(newOrder);
+      } else {
+        // If order doesn't exist, save it and reset form
+        await dbHelper.saveOrUpdateOrder(newOrder!);
+        resetOrderForm(); // Assuming this method is defined elsewhere to reset form
+      }
+
+      print('Order and all images saved or updated successfully.');
+
+      // Assuming you have audio operations to stop and close as in your original function
+      await audioRecorder.stopRecorder();
+      await audioRecorder.closeRecorder();
+      await audioPlayer.stopPlayer();
+      await audioPlayer.closePlayer();
+
+      // Navigate to the order list page (replace as needed)
+      
+      );
+    } catch (error) {
+      // Handle any errors that occur during the process
+      print('Error saving or updating order: $error');
+    } */
+    Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => OrderListPage()));
+    print('dispossed successfully');
   }
 
   @override
@@ -364,8 +371,6 @@ class NewOrderPageState extends State<NewOrderPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          // is edit mode enabled display Edit order else display New order
-          // isEditMode ? 'Edit order' : 'New order',
           'New Order',
           style: TextStyle(color: white),
         ),
@@ -470,20 +475,25 @@ class NewOrderPageState extends State<NewOrderPage> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => OrderDetailsPage(
-                            items: sampleItems,
+                            items:
+                                sampleItems, // Assuming sampleItems is passed to the next page
                           ),
                         ),
                       );
 
                       if (selectedItems != null && selectedItems.isNotEmpty) {
                         setState(() {
+                          // Update the TextField with the selected items
                           controller.text = selectedItems.join(", ");
                         });
                       } else {
-                        controller.text = "";
+                        // Clear the TextField if no items were selected
+                        setState(() {
+                          controller.text = "";
+                        });
                       }
                     },
-                  ),
+                  )
                 ],
               ),
 
@@ -708,7 +718,7 @@ class NewOrderPageState extends State<NewOrderPage> {
                     style: TextStyle(color: white),
                   ),
                   onPressed: () {
-                    confirmOrder();
+                    confirmOrder(null);
                   },
                 ),
               ),
@@ -716,25 +726,6 @@ class NewOrderPageState extends State<NewOrderPage> {
           ),
         ),
       ),
-      /* bottomNavigationBar: BottomNavigationBar(
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add_shopping_cart),
-            label: 'Order',
-          ),
-          // for future use
-          /*BottomNavigationBarItem(
-            icon: Icon(Icons.work),
-            label: 'Jobs',
-          ),*/
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'View',
-          ),
-        ],
-        onTap: _onItemTapped,
-        currentIndex: _selectedIndex,
-      ), */
     );
   }
 }

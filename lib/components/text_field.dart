@@ -7,6 +7,7 @@ class MyTextField extends StatelessWidget {
   final bool readOnly;
   final TextEditingController? controller; // Optional controller parameter
   final TextInputType? keyboardType;
+  final IconButton? suffixIcon; // Optional suffixIcon parameter
 
   const MyTextField({
     super.key,
@@ -14,7 +15,8 @@ class MyTextField extends StatelessWidget {
     this.icon,
     required this.readOnly,
     this.controller,
-    this.keyboardType, // Initialize controller parameter
+    this.keyboardType,
+    this.suffixIcon, // Initialize controller parameter
   });
 
   @override

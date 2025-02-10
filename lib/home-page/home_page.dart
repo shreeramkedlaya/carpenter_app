@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'dart:io';
 import 'package:carpenter_app/components/const.dart';
 import 'package:carpenter_app/home-page/graph/bar_graph.dart';
@@ -7,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../add-new-order/new_order_page.dart';
+import '../components/vars.dart';
 import 'column_text.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,14 +20,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // data for bar graph
-  List<double> data = [
-    1,
-    5,
-    10,
-    15,
-    20,
-  ];
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -55,8 +50,16 @@ class _HomePageState extends State<HomePage> {
                 UserAccountsDrawerHeader(
                   accountName: Text('Shreeram Kedlaya'),
                   accountEmail: Text('shreeram.kedlaya@example.com'),
-                  currentAccountPicture: CircleAvatar(
-                    backgroundImage: AssetImage('assets/profile.jpg'),
+                  currentAccountPicture: Container(
+                    width: double.infinity, // Take full width of parent
+                    height: double.infinity, // Take full height of parent
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/no_profile.png'),
+                        fit: BoxFit
+                            .cover, // Ensure the image covers the full area
+                      ),
+                    ),
                   ),
                   decoration: BoxDecoration(
                     color: kBlue800,
@@ -77,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                     );
                   },
                 ),
-                // order list list tile
+                // order list list_tile
                 ListTile(
                   leading: Icon(Icons.list),
                   title: Text('Order List'),

@@ -1,3 +1,4 @@
+import 'package:carpenter_app/components/const.dart';
 import 'package:flutter/material.dart';
 
 class FilterChipWidget extends StatefulWidget {
@@ -29,7 +30,7 @@ class _FilterChipWidgetState extends State<FilterChipWidget> {
             onSelected: (bool selected) {
               widget.onSelected(widget.label);
             },
-            selectedColor: Colors.blueAccent,
+            selectedColor: kBlue800,
             backgroundColor: Colors.grey[200],
             selected: widget.isSelected,
             shape: RoundedRectangleBorder(
@@ -39,8 +40,8 @@ class _FilterChipWidgetState extends State<FilterChipWidget> {
           if (widget.isSelected)
             Container(
               height: 2,
-              width: 25, // Width of the underline, adjust as needed
-              color: Colors.blueAccent, // Color of the underline
+              width: 25,
+              color: kBlue800,
             ),
         ],
       ),

@@ -1,7 +1,7 @@
-import 'package:carpenter_app/components/order_card.dart';
 import 'package:flutter/material.dart';
-
 import '../components/const.dart';
+import '../components/order_card.dart';
+import '../components/vars.dart';
 import 'filter_tabs.dart';
 import '../models/order_model.dart';
 
@@ -13,67 +13,24 @@ class OrderListPage extends StatefulWidget {
 }
 
 class OrderListPageState extends State<OrderListPage> {
-  // Track the currently selected filter, defaulting to 'All'
-  String? selectedFilter = 'All';
-
-  // Dummy list of orders
-  final List<Order> orders = [
-    Order(
-      DateTime(2025, 2, 3),
-      id: '1',
-      status: 'Pending',
-      name: 'Pantry',
-      customerName: 'qwerty',
-      address: '',
-    ),
-    Order(
-      DateTime(2025, 2, 3),
-      id: '2',
-      status: 'Started',
-      name: 'Heater',
-      customerName: 'asdfghj',
-      address: '',
-    ),
-    Order(
-      DateTime(2025, 2, 3),
-      id: '3',
-      status: 'Ready',
-      name: 'Refurbish',
-      customerName: 'jkl',
-      address: '',
-    ),
-    Order(
-      DateTime(2025, 2, 3),
-      id: '4',
-      status: 'Delivered',
-      name: 'Polish',
-      customerName: 'vbnm',
-      address: '',
-    ),
-    Order(
-      DateTime(2025, 2, 3),
-      id: '5',
-      status: 'Hold',
-      name: 'Glass',
-      customerName: 'yuiop',
-      address: '',
-    ),
-  ];
-
   // Handle chip selection
   void _onFilterSelected(String filter) {
-    setState(() {
-      selectedFilter = (selectedFilter == filter) ? null : filter;
-    });
+    if (selectedFilter != filter) {
+      setState(() {
+        selectedFilter = (selectedFilter == filter) ? null : filter;
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<Order> orders = [];
     List<Order> filteredOrders = orders.where((order) {
       if (selectedFilter == null || selectedFilter == 'All') {
         return true; // Include all orders
       }
-      return order.status == selectedFilter; // Include only matching orders
+      return order.orderStatus ==
+          selectedFilter; // Include only matching orders
     }).toList();
 
     return Scaffold(
@@ -82,14 +39,14 @@ class OrderListPageState extends State<OrderListPage> {
           'Order List',
           style: TextStyle(color: white),
         ),
-        backgroundColor: Colors.blueAccent, // Lighter blue for the background
+        backgroundColor: kBlue800,
       ),
       body: Column(
         children: [
           // Top bar with scrollable filters
           Container(
             padding: EdgeInsets.all(8),
-            color: white, // Light background for the filter area
+            color: transparent, // Light background for the filter area
             child: SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -128,6 +85,7 @@ class OrderListPageState extends State<OrderListPage> {
               ),
             ),
           ),
+
           // Display the selected filter
           Expanded(
             child: ListView.builder(
@@ -136,7 +94,8 @@ class OrderListPageState extends State<OrderListPage> {
                 final order = filteredOrders[index];
 
                 // Skip if the filter is set and the order doesn't match
-                if (selectedFilter == null && order.status != selectedFilter) {
+                if (selectedFilter == null &&
+                    order.orderStatus != selectedFilter) {
                   return Container();
                 } else {
                   return OrderCard(order: order);

@@ -1,0 +1,46 @@
+# Flutter/Dart/Pub related files
+.dart_tool/
+.packages
+.pub-cache/
+build/
+ios/
+android/.gradle/
+android/app/src/debug/
+android/app/src/main/res/
+android/app/src/profile/
+android/app/profile/
+android/app/.gradle/
+android/app/build/
+android/local.properties
+android/gradle/
+android/settings.gradle
+*.iml
+
+# macOS related files
+macos/
+linux/
+windows/
+web/
+.metadata
+
+# IntelliJ related files
+.idea/
+*.ipr
+*.iws
+*.pdb
+*.sublime-workspace
+*.sublime-project
+.flutter-plugins
+.flutter-plugins-dependencies
+
+
+# VS Code related files
+.vscode/
+
+# Miscellaneous
+*.log
+*.lock
+*.tmp
+*.swp
+
+

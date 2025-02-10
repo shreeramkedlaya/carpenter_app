@@ -42,3 +42,18 @@ FlutterSoundPlayer audioPlayer = FlutterSoundPlayer();
 // timer for recording
 Timer? recordingTimer; // Timer to stop recording after 60 sec
 const int maxRecordingTime = 60; // Maximum recording time in seconds
+
+// Track the currently selected filter, defaulting to 'All'
+String? selectedFilter = 'All';
+
+// Dummy list of orders
+Color? cardColor;
+
+// data for bar graph
+List<double> data = [
+  1,
+  5,
+  10,
+  15,
+  20,
+];

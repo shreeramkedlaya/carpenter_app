@@ -1,4 +1,9 @@
-import 'package:carpenter_app/home-page/graph/individual_bar.dart';
+class IndividualBar {
+  final int x;
+  final double y;
+
+  IndividualBar({required this.x, required this.y});
+}
 
 class BarData {
   final double sunAmount;
