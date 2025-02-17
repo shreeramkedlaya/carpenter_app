@@ -11,8 +11,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 import 'package:url_launcher/url_launcher.dart';
-
-import '../models/order_model.dart';
 import 'date_picker.dart';
 import '../order-list/order_list.dart';
 import 'order_details_dropdown.dart';
@@ -316,7 +314,7 @@ class NewOrderPageState extends State<NewOrderPage> {
     }
   }
 
-  Future<void> confirmOrder(Order? newOrder) async {
+  Future<void> confirmOrder() async {
     /* try {
       // Check if the order has an ID (order exists in DB) or not
       final dbHelper = DatabaseService();
@@ -718,7 +716,7 @@ class NewOrderPageState extends State<NewOrderPage> {
                     style: TextStyle(color: white),
                   ),
                   onPressed: () {
-                    confirmOrder(null);
+                    confirmOrder();
                   },
                 ),
               ),
