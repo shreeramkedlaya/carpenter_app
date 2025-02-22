@@ -35,7 +35,6 @@ class Customer {
 
 class Order {
   int? orderId;
-  int? customerId;
   String customerName;
   String mobile;
   String place;
@@ -48,7 +47,6 @@ class Order {
 
   Order({
     this.orderId,
-    this.customerId,
     required this.customerName,
     required this.mobile,
     required this.place,
@@ -63,7 +61,6 @@ class Order {
   factory Order.fromMap(Map<String, dynamic> map) {
     return Order(
       orderId: map['orderId'],
-      customerId: map['customerId'],
       customerName: map['customerName'],
       mobile: map['mobile'],
       place: map['place'],
@@ -81,7 +78,6 @@ class Order {
   Map<String, dynamic> toMap() {
     return {
       'orderId': orderId,
-      'customerId': customerId,
       'customerName': customerName,
       'mobile': mobile,
       'place': place,

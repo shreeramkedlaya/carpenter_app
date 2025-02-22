@@ -472,7 +472,7 @@ class NewOrderPageState extends State<NewOrderPage> {
                       final selectedItems = await Navigator.push<List<String>>(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => OrderDetailsPage(
+                          builder: (context) => OrderDetailsDropdown(
                             items:
                                 sampleItems, // Assuming sampleItems is passed to the next page
                           ),

@@ -12,3 +12,4 @@ gradle/
 key.properties
 **/*.keystore
 **/*.jks
+app/.cxx/

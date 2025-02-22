@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 import '../components/const.dart';
 
-class OrderDetailsPage extends StatefulWidget {
+class OrderDetailsDropdown extends StatefulWidget {
   final List<Item> items;
-  const OrderDetailsPage({super.key, required this.items});
+  const OrderDetailsDropdown({super.key, required this.items});
 
   @override
-  OrderDetailsPageState createState() => OrderDetailsPageState();
+  OrderDetailsDropdownState createState() => OrderDetailsDropdownState();
 }
 
-class OrderDetailsPageState extends State<OrderDetailsPage> {
+class OrderDetailsDropdownState extends State<OrderDetailsDropdown> {
   List<String> selectedItems = [];
   final Map<int, TextEditingController> _quantityControllers = {};
   // Method to handle checkbox changes and update item quantity
