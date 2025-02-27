@@ -347,6 +347,19 @@ class NewOrderPageState extends State<NewOrderPage> {
         context, MaterialPageRoute(builder: (context) => OrderListPage()));
     print('dispossed successfully');
   }
+  /* final DatabaseService db = DatabaseService();
+  Order newOrder = Order(
+    customerName: '', // Placeholder for customer name
+    mobile: '', // Placeholder for mobile number
+    place: '', // Placeholder for place
+    orgId: 0, // Default orgId, adjust as necessary
+    orderStatus: 'in-progress', // Default status
+    orderAmount: 0.0, // Default amount
+    advanceAmount: 0.0, // Default advance amount
+    dueAmount: 0.0, // Default due amount
+    orderDate: DateTime.now(), // Current date as default
+  );
+  Future<void> saveOrUpdateOrder() {} */
 
   @override
   void initState() {
@@ -628,7 +641,7 @@ class NewOrderPageState extends State<NewOrderPage> {
                         children: [
                           Text('Materials (${imageMaterials.length})'),
                           GestureDetector(
-                            onTap: () => _showImageSourceDialog('measurements'),
+                            onTap: () => _showImageSourceDialog('materials'),
                             child: Icon(Icons.camera_alt),
                           ),
                         ],

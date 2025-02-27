@@ -14,7 +14,7 @@ class Customer {
     required this.contactNumber,
     required this.address,
     required this.orgId,
-    this.orgName = 'Tailor_Partner',
+    this.orgName = 'Wood_Partner',
     this.enabled = true,
     this.deleted = false,
   });

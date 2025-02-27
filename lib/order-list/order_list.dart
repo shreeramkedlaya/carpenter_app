@@ -67,10 +67,9 @@ class OrderListPageState extends State<OrderListPage> {
                     onSelected: _onFilterSelected,
                   ),
                   FilterChipWidget(
-                    label: 'Ready',
-                    isSelected: selectedFilter == 'Ready',
-                    onSelected: _onFilterSelected,
-                  ),
+                      label: 'Ready',
+                      isSelected: selectedFilter == 'Ready',
+                      onSelected: _onFilterSelected),
                   FilterChipWidget(
                     label: 'Delivered',
                     isSelected: selectedFilter == 'Delivered',
@@ -98,7 +97,7 @@ class OrderListPageState extends State<OrderListPage> {
                     order.orderStatus != selectedFilter) {
                   return Container();
                 } else {
-                  return OrderCard(order: order);
+                  return OrderCard(order: filteredOrders[index]);
                 }
               },
             ),
