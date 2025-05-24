@@ -1,5 +1,3 @@
-// ignore_for_file: deprecated_member_use
-
 import 'dart:io';
 import 'package:carpenter_app/components/const.dart';
 import 'package:direct_dialer/direct_dialer.dart';

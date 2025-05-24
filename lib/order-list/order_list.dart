@@ -1,6 +1,6 @@
+import 'package:carpenter_app/sqlite-service/sqlite_service.dart';
 import 'package:flutter/material.dart';
 import '../components/const.dart';
-import '../components/order_card.dart';
 import '../components/vars.dart';
 import 'filter_tabs.dart';
 import '../models/order_model.dart';
@@ -13,6 +13,8 @@ class OrderListPage extends StatefulWidget {
 }
 
 class OrderListPageState extends State<OrderListPage> {
+  Future<List<Map<String, dynamic>>>? orderss;
+  final DatabaseService db = DatabaseService();
   // Handle chip selection
   void _onFilterSelected(String filter) {
     if (selectedFilter != filter) {
@@ -21,6 +23,11 @@ class OrderListPageState extends State<OrderListPage> {
       });
     }
   }
+  /* Future<void> _refreshEntries() async {
+    setState(() {
+      orderss = db.getAllOrders();
+    });
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -86,22 +93,6 @@ class OrderListPageState extends State<OrderListPage> {
           ),
 
           // Display the selected filter
-          Expanded(
-            child: ListView.builder(
-              itemCount: filteredOrders.length,
-              itemBuilder: (context, index) {
-                final order = filteredOrders[index];
-
-                // Skip if the filter is set and the order doesn't match
-                if (selectedFilter == null &&
-                    order.orderStatus != selectedFilter) {
-                  return Container();
-                } else {
-                  return OrderCard(order: filteredOrders[index]);
-                }
-              },
-            ),
-          ),
         ],
       ),
     );
