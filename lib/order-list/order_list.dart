@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../components/const.dart';
 import '../components/vars.dart';
 import 'filter_tabs.dart';
-import '../models/order_model.dart';
 
+/* import '../models/order_model.dart';
+ */
 class OrderListPage extends StatefulWidget {
   const OrderListPage({super.key});
 
@@ -31,14 +32,14 @@ class OrderListPageState extends State<OrderListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Order> orders = [];
-    List<Order> filteredOrders = orders.where((order) {
+    /* final List<Order> orders = []; */
+    /* List<Order> filteredOrders = orders.where((order) {
       if (selectedFilter == null || selectedFilter == 'All') {
         return true; // Include all orders
       }
       return order.orderStatus ==
           selectedFilter; // Include only matching orders
-    }).toList();
+    }).toList(); */
 
     return Scaffold(
       appBar: AppBar(
